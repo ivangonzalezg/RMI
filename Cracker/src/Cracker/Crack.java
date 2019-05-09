@@ -4,6 +4,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import RMIserver.RMIServerInterface;
 import java.io.File;
+import java.io.FileInputStream;
 
 public class Crack extends Thread {
 
@@ -30,7 +31,9 @@ public class Crack extends Thread {
     @Override
     public void run() {
         try {
-            String response = stub.crackearArchivo('h', 'h', inputFile, checkSum);
+            FileInputStream inputStream = new FileInputStream(inputFile);
+            byte[] inputBytes = new byte[(int) inputFile.length()];
+            String response = stub.crackearArchivo('h', 'h', inputBytes, checkSum);
             if (!"NOT FOUND".equals(response)) {
                 cracker.DetenerLosDemasNodos(response);
             }
