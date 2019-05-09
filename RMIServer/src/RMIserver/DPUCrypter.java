@@ -25,7 +25,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class DPUCrypter {
 
-    public static int CryptFileUsingAES(boolean encrypt, String key, File inputFile, File outputFileN, String checkSum) {
+    public static int CryptFileUsingAES(boolean encrypt, String key, File inputFile, File outputFile, String checkSum) {
         try {
             if(key.length()<16){                
                 key=String.format("%16s", key).replace(' ', '0');
@@ -44,8 +44,7 @@ public class DPUCrypter {
             inputStream.read(inputBytes);
 
             byte[] outputBytes = cipher.doFinal(inputBytes);
-            
-            File outputFile = File.createTempFile(outputFileN.getName(), ".tmp");
+
             FileOutputStream outputStream = new FileOutputStream(outputFile);
             outputStream.write(outputBytes);
 
@@ -55,7 +54,6 @@ public class DPUCrypter {
                 try {
                     MessageDigest md = MessageDigest.getInstance("MD5");
                     String checkSumOfDecryptedFile = DPUCrypter.checksum(outputFile, md);
-                    outputFile.delete();
                     if (!(checkSum.equals(checkSumOfDecryptedFile))) {
                         return -2;
                     }
@@ -78,8 +76,9 @@ public class DPUCrypter {
         }
     }
 
-    public static String CrackFile(char Inital, char Final, File inputFile, File outputFile,String checkSum, RMIServer rmiServer) throws IOException {
+    public static String CrackFile(char Inital, char Final, File inputFile, File outputFileN,String checkSum, RMIServer rmiServer) throws IOException {
         System.out.println("Loading...");
+        File outputFile = File.createTempFile(outputFileN.getName(), ".tmp");
         char[] PL = DPUCrypter.shuffleArray(DPUCrypter.createArray(Inital, Final));
         char[] SL = DPUCrypter.shuffleArray(DPUCrypter.createArray('a', 'z'));
         char[] TL = DPUCrypter.shuffleArray(DPUCrypter.createArray('a', 'z'));
