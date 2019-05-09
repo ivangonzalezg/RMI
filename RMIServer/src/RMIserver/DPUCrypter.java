@@ -106,6 +106,9 @@ public class DPUCrypter {
         System.out.println("Starting...");
         long startTime = System.currentTimeMillis();
         for (int F = 0; F < Keys.length ;F++){
+            if (!rmiServer.seguirBuscando) {
+                break;
+            }
             String currentIndex = Keys[F];
             System.out.println("Current key " + F + ": " + currentIndex);
             int internalReturn = CryptFileUsingAES(false, currentIndex, inputFile,checkSum);
