@@ -201,12 +201,15 @@ public class CrackerUI extends javax.swing.JFrame {
 
         }
         String[] ip = jTextArea1.getText().split("\n");
-        int claves = 11881376;
-        while(claves % ip.length != 0){
-            claves += 1;
-        }
+        int range = 26/(ip.length);
+        char[] letter = new char[ip.length + 1];
         for (int i = 0; i < ip.length; i++) {
-            Crack.add(new Crack(ip[i], this, selectedFile, new File(selectedFile.getAbsolutePath()+".dcp"), checkSum));
+            letter[i] = (char) ((range*(i)) + 97 );
+        }
+        letter[ip.length] = (char) 122;
+        System.out.println("" + new String(letter));
+        for (int i = 0; i < ip.length; i++) {
+            Crack.add(new Crack(ip[i], this, selectedFile, new File(selectedFile.getAbsolutePath()+".dcp"), checkSum, letter[i], letter[i + 1]));
             Crack.get(i).start();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
