@@ -76,6 +76,8 @@ public class CrackerUI extends javax.swing.JFrame {
 
         jLabel6.setText("Checksum");
 
+        jTextField6.setText("ab5f82ccf408804b4157b2c7862f6411");
+
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -84,6 +86,7 @@ public class CrackerUI extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setText("localhost");
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel3.setText("IPs");
