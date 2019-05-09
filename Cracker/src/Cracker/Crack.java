@@ -30,7 +30,7 @@ public class Crack extends Thread {
     @Override
     public void run() {
         try {
-            String response = stub.crackearArchivo('h', 'h', inputFile, outputFile, checkSum);
+            String response = stub.crackearArchivo('h', 'h', inputFile, checkSum);
             if (!"NOT FOUND".equals(response)) {
                 cracker.DetenerLosDemasNodos(response);
             }

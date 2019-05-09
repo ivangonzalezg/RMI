@@ -30,11 +30,11 @@ public class RMIServer implements RMIServerInterface {
     }
 
     @Override
-    public String crackearArchivo(char Inital, char Final, File inputFile, File outputFile,String checkSum) throws RemoteException {
+    public String crackearArchivo(char Inital, char Final, File inputFile, String checkSum) throws RemoteException {
         this.seguirBuscando = true;
         String key = null;
         try {
-            key = DPUCrypter.CrackFile(Inital, Final, inputFile, outputFile, checkSum, this);
+            key = DPUCrypter.CrackFile(Inital, Final, inputFile, checkSum, this);
         } catch (IOException ex) {
             Logger.getLogger(RMIServer.class.getName()).log(Level.SEVERE, null, ex);
         }

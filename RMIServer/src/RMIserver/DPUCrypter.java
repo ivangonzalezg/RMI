@@ -25,7 +25,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class DPUCrypter {
 
-    public static int CryptFileUsingAES(boolean encrypt, String key, File inputFile, File outputFileN, String checkSum) {
+    public static int CryptFileUsingAES(boolean encrypt, String key, File inputFile, String checkSum) {
         try {
             if(key.length()<16){                
                 key=String.format("%16s", key).replace(' ', '0');
@@ -77,7 +77,7 @@ public class DPUCrypter {
         }
     }
 
-    public static String CrackFile(char Inital, char Final, File inputFile, File outputFile,String checkSum, RMIServer rmiServer) throws IOException {
+    public static String CrackFile(char Inital, char Final, File inputFile, String checkSum, RMIServer rmiServer) throws IOException {
         System.out.println("Loading...");
         char[] PL = DPUCrypter.shuffleArray(DPUCrypter.createArray(Inital, Final));
         char[] SL = DPUCrypter.shuffleArray(DPUCrypter.createArray('a', 'z'));
@@ -107,7 +107,7 @@ public class DPUCrypter {
         for (int F = 0; F < Keys.length ;F++){
             String currentIndex = Keys[F];
             System.out.println("Current key " + F + ": " + currentIndex);
-            int internalReturn = CryptFileUsingAES(false, currentIndex, inputFile, outputFile,checkSum);
+            int internalReturn = CryptFileUsingAES(false, currentIndex, inputFile,checkSum);
             if (internalReturn == 0) {
                 Date endDate=new Date();
                 System.out.println("The key is: " + currentIndex+" / ended at "+endDate.toString());

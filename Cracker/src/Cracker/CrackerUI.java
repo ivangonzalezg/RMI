@@ -76,6 +76,8 @@ public class CrackerUI extends javax.swing.JFrame {
 
         jLabel6.setText("Checksum");
 
+        jTextField6.setText("ab5f82ccf408804b4157b2c7862f6411");
+
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -84,6 +86,7 @@ public class CrackerUI extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setText("localhost\n192.168.0.15");
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel3.setText("IPs");
@@ -214,7 +217,7 @@ public class CrackerUI extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        DPUCrypter.CryptFileUsingAES(false,this.jTextField2.getText(), selectedFile, new File(selectedFile.getAbsolutePath().replace(".cp","")),null);
+        DPUCrypter.CryptFileUsingAES(false,this.jTextField2.getText(), selectedFile,null);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
