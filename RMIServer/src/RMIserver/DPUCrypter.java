@@ -1,10 +1,12 @@
 package RMIserver;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.security.DigestInputStream;
 import java.security.InvalidKeyException;
@@ -44,16 +46,16 @@ public class DPUCrypter {
             inputStream.read(inputBytes);
 
             byte[] outputBytes = cipher.doFinal(inputBytes);
-
-            FileOutputStream outputStream = new FileOutputStream(outputFile);
-            outputStream.write(outputBytes);
-
-            inputStream.close();
-            outputStream.close();
+            
+            File filepath = File.createTempFile("tempfile", ".tmp"); 
+            BufferedWriter bw = new BufferedWriter(new FileWriter(filepath));
+            bw.write(new String(outputBytes));
+            bw.close();
             if (checkSum != null) {
                 try {
                     MessageDigest md = MessageDigest.getInstance("MD5");
-                    String checkSumOfDecryptedFile = DPUCrypter.checksum(outputFile, md);
+                    String checkSumOfDecryptedFile = DPUCrypter.checksum(filepath, md);
+                    filepath.delete();
                     if (!(checkSum.equals(checkSumOfDecryptedFile))) {
                         return -2;
                     }
