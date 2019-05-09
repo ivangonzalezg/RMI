@@ -86,7 +86,7 @@ public class CrackerUI extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("localhost");
+        jTextArea1.setText("localhost\n192.168.0.15");
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel3.setText("IPs");

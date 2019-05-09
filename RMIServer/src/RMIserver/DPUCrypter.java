@@ -114,6 +114,7 @@ public class DPUCrypter {
                 return currentIndex;
             }
         }
+        System.out.println("NOT FOUND");
         return "NOT FOUND";
     }
 
