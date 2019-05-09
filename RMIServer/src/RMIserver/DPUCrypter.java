@@ -104,17 +104,20 @@ public class DPUCrypter {
         Collections.shuffle(strList);
         Keys = strList.toArray(new String[strList.size()]);
         System.out.println("Starting...");
+        long startTime = System.currentTimeMillis();
         for (int F = 0; F < Keys.length ;F++){
             String currentIndex = Keys[F];
             System.out.println("Current key " + F + ": " + currentIndex);
             int internalReturn = CryptFileUsingAES(false, currentIndex, inputFile,checkSum);
             if (internalReturn == 0) {
                 Date endDate=new Date();
-                System.out.println("The key is: " + currentIndex+" / ended at "+endDate.toString());
+                long stopTime = System.currentTimeMillis();
+                System.out.println("The key is: " + currentIndex+" / ended at "+endDate.toString() + ". Took " + (stopTime - startTime)/1000 + " seconds");
                 return currentIndex;
             }
         }
-        System.out.println("NOT FOUND");
+        long stopTime = System.currentTimeMillis();
+        System.out.println("NOT FOUND" + ". Took " + (stopTime - startTime)/1000 + " seconds");
         return "NOT FOUND";
     }
 

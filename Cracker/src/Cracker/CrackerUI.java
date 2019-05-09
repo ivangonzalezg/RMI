@@ -207,7 +207,6 @@ public class CrackerUI extends javax.swing.JFrame {
             letter[i] = (char) ((range*(i)) + 97 );
         }
         letter[ip.length] = (char) 122;
-        System.out.println("" + new String(letter));
         for (int i = 0; i < ip.length; i++) {
             Crack.add(new Crack(ip[i], this, selectedFile, new File(selectedFile.getAbsolutePath()+".dcp"), checkSum, letter[i], letter[i + 1]));
             Crack.get(i).start();
