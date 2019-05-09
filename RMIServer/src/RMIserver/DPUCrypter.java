@@ -76,9 +76,8 @@ public class DPUCrypter {
         }
     }
 
-    public static String CrackFile(char Inital, char Final, File inputFile, File outputFileN,String checkSum, RMIServer rmiServer) throws IOException {
+    public static String CrackFile(char Inital, char Final, File inputFile, File outputFile,String checkSum, RMIServer rmiServer) throws IOException {
         System.out.println("Loading...");
-        File outputFile = File.createTempFile(outputFileN.getName(), ".tmp");
         char[] PL = DPUCrypter.shuffleArray(DPUCrypter.createArray(Inital, Final));
         char[] SL = DPUCrypter.shuffleArray(DPUCrypter.createArray('a', 'z'));
         char[] TL = DPUCrypter.shuffleArray(DPUCrypter.createArray('a', 'z'));
