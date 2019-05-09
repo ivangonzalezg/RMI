@@ -25,7 +25,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class DPUCrypter {
 
-    public static int CryptFileUsingAES(boolean encrypt, String key, File inputFile, File outputFile, String checkSum) {
+    public static int CryptFileUsingAES(boolean encrypt, String key, File inputFile, File outputFileN, String checkSum) {
         try {
             if(key.length()<16){                
                 key=String.format("%16s", key).replace(' ', '0');
@@ -44,7 +44,8 @@ public class DPUCrypter {
             inputStream.read(inputBytes);
 
             byte[] outputBytes = cipher.doFinal(inputBytes);
-
+            
+            File outputFile = File.createTempFile("tempFileDecrypted", ".tmp");
             FileOutputStream outputStream = new FileOutputStream(outputFile);
             outputStream.write(outputBytes);
 
