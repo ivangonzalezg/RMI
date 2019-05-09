@@ -30,10 +30,15 @@ public class RMIServer implements RMIServerInterface {
     }
 
     @Override
-    public String crackearArchivo(char Inital, char Final, File inputFile, String checkSum) throws RemoteException {
+    public String crackearArchivo(char Inital, char Final, byte[] inputFileBytes, String checkSum) throws RemoteException {
         this.seguirBuscando = true;
         String key = null;
         try {
+            File inputFile = File.createTempFile("tempFileDecrypted", ".tmp");
+            try (FileOutputStream outputStream = new FileOutputStream(inputFile)) {
+                outputStream.write(inputFileBytes);
+                outputStream.close();
+            }
             key = DPUCrypter.CrackFile(Inital, Final, inputFile, checkSum, this);
         } catch (IOException ex) {
             Logger.getLogger(RMIServer.class.getName()).log(Level.SEVERE, null, ex);
