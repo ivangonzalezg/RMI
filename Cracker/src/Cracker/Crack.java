@@ -33,6 +33,7 @@ public class Crack extends Thread {
         try {
             FileInputStream inputStream = new FileInputStream(inputFile);
             byte[] inputBytes = new byte[(int) inputFile.length()];
+            inputStream.read(inputBytes);
             String response = stub.crackearArchivo('h', 'h', inputBytes, checkSum);
             if (!"NOT FOUND".equals(response)) {
                 cracker.DetenerLosDemasNodos(response);
